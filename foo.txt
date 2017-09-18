@@ -1,0 +1,6 @@
+Gemfile
+Gemfile.lock
+Procfile
+README.md
+app.rb
+foo.txt
