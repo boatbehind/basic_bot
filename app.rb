@@ -5,21 +5,7 @@ require 'twilio-ruby'
 
 enable :sessions
 
-account_sid = 'AC7c71d17eed74e11ceb91c78a0c44e950'
-auth_token = '8e152bc52294d1ac852ac5a3cfb278f1'
-
-# set up a client to talk to the Twilio REST API
-@client = Twilio::REST::Client.new account_sid, auth_token
-
-# alternatively, you can preconfigure the client like so
-Twilio.configure do |config|
-  config.account_sid = account_sid
-  config.auth_token = auth_token
-end
-
-# and then you can create a new client without parameters
-@client = Twilio::REST::Client.new
-
+@client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
 
 configure :development do
   require 'dotenv'
@@ -42,27 +28,22 @@ get "/sms/incoming" do
   body = params[:Body] || ""
   body = body.downcase.strip
 
-  if body == "who"
-    message = "I'm Daragh's MeBot"
-  elsif body == "what"
-      message = "I'm a bot that'll let you ask things about Daragh without bothering him."
-  elsif body == "why"
-    message = "He made me for this class. To show you how to make simple bots"
-  elsif body == "where"
-    message = "I'm on a server in the cloud.. But Daragh's in Pittsburgh"
-  elsif body == "when"
-    message = "I was made on Sept 14th. But Daragh is much older than that"
+  if session["counter"] == 1
+    message = "Thanks for your first message. From #{sender} saying #{body}"
+    media = "https://media.giphy.com/media/13ZHjidRzoi7n2/giphy.gif"
   else
-    message = "I didn't understand that. You can say who, what, where, when and why?"
-
+    message = "Thanks for message number #{ count }. From #{sender} saying #{body}"
+    media = nil
   end
+
+  session["counter"] += 1
 
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
       m.body( message )
-      #unless media.nil?
-        #m.media( media )
-      #end
+      unless media.nil?
+        m.media( media )
+      end
     end
   end
 
