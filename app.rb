@@ -21,8 +21,6 @@ end
 @client = Twilio::REST::Client.new
 
 
-
-
 configure :development do
   require 'dotenv'
   Dotenv.load
@@ -50,9 +48,9 @@ get "/sms/incoming" do
       message = "I'm a bot that'll let you ask things about Daragh without bothering him."
   elsif body == "why"
     message = "He made me for this class. To show you how to make simple bots"
-  elsif body = "where"
+  elsif body == "where"
     message = "I'm on a server in the cloud.. But Daragh's in Pittsburgh"
-  elsif body = "when"
+  elsif body == "when"
     message = "I was made on Sept 14th. But Daragh is much older than that"
   else
     message = "I didn't understand that. You can say who, what, where, when and why?"
