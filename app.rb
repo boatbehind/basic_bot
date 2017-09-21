@@ -1,11 +1,7 @@
-require "sinatra"
-require 'sinatra/reloader' if development?
+require 'sinatra'
+require "sinatra/reloader" if development?
 
-require 'twilio-ruby'
-
-enable :sessions
-
-@client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
+require "twilio-ruby"
 
 configure :development do
   require 'dotenv'
@@ -13,41 +9,22 @@ configure :development do
 end
 
 
-get "/" do
-	404
-end
+enable :sessions
 
+# create a twilio client using your account info
+@client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
 
+# create an endpoint to handle incoming requests from Twilio
 get "/sms/incoming" do
-  session["last_intent"] ||= nil
-
   session["counter"] ||= 1
-  count = session["counter"]
-
-  sender = params[:From] || ""
   body = params[:Body] || ""
-  body = body.downcase.strip
-
-  if session["counter"] == 1
-    message = "Thanks for your first message. From #{sender} saying #{body}"
-    media = "https://media.giphy.com/media/13ZHjidRzoi7n2/giphy.gif"
-  else
-    message = "Thanks for message number #{ count }. From #{sender} saying #{body}"
-    media = nil
-  end
-
-  session["counter"] += 1
 
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
-      m.body( message )
-      unless media.nil?
-        m.media( media )
-      end
-    end
+      m.body( "You said: " + body + "\n It’s message number #{ session["counter"] } ")
+   end
   end
-
-
+  session["counter"] += 1
   content_type 'text/xml'
   twiml.to_s
 
