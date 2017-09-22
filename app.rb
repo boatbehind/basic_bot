@@ -7,7 +7,7 @@ configure :development do
   require 'dotenv'
   Dotenv.load
 end
- 
+
 
 enable :sessions
 
@@ -28,4 +28,4 @@ get "/sms/incoming" do
   content_type 'text/xml'
   twiml.to_s
 
-end
+endt
