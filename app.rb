@@ -28,4 +28,4 @@ get "/sms/incoming" do
   content_type 'text/xml'
   twiml.to_s
 
-endt
+end
