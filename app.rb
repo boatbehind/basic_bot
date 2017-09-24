@@ -32,7 +32,7 @@ get "/sms/incoming" do
 
   if session["counter"] == 1
     message = "Hey there, I'm Lumix. I can share any information about any movie!"
-    smedia = "https://media.giphy.com/media/11sBLVxNs7v6WA.gif"
+    media = "https://media.giphy.com/media/11sBLVxNs7v6WA.gif"
   elsif body == "hello" || body == "hi" || body == "hey"
     message = "Hi! Tell me the movie name you like."
   elsif body == "dunkirk"
