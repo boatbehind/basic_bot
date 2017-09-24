@@ -31,9 +31,10 @@ get "/sms/incoming" do
   body = body.downcase.strip
 
 
-
-  if body == "Who are you"
-    message = "I'm Lumix, I could help you order movie ticekts. Tell me what movie do you like?"
+  if session["counter"] == 1
+     message = "Hey! I'm Lumix, I could help you order movie ticekts. "
+  elsif body == "hi" || body == "hello" || body == "hey"
+    message = " Hey! Tell me what movie do you like?"
   elsif body == "War movie"
     message = "We have Dunkirk and Hacksaw Ridge"
   elsif body == "Dunkirk"
