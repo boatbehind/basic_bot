@@ -49,6 +49,8 @@ get "/sms/incoming" do
     message = "You are welcome! I'm happy to talk aout this movie after you finishing it!"
   end
 
+   session["counter"] += 1
+
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
       m.body( message )
