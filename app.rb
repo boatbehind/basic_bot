@@ -43,15 +43,16 @@ get "/sms/incoming" do
     message = "Cool! The Manor will have a movie that time."
   elsif body == "How much is it"
       message = "8$, book right now?"
-  elsif body = "OK"
+  elsif body == "OK"
     message = "Great! I just booked, do you want add it to calender?"
-  elsif body = "Thanks"
+  elsif body == "Thanks"
     message = "You are welcome! I'm happy to talk aout this movie after you finishing it!"
   else
     message = "I'm sorry, I didn't get that"
     media = nil
   end
 
+  session["counter"] += 1
 
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
