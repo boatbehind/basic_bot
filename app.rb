@@ -17,12 +17,14 @@ enable :sessions
 # create an endpoint to handle incoming requests from Twilio
 get "/sms/incoming" do
   session["counter"] ||= 1
-  body = params[:Body] || “"
+  body = params[:Body] || ""
+
 
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
-      m.body( "You said: " + body + “\n It’s message number #{ session["counter"] }” )
+      m.body( "You said: " + body + "\n It’s message number #{ session["counter"] } ")
    end
+
   end
   session["counter"] += 1
   content_type 'text/xml'
