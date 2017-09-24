@@ -30,29 +30,23 @@ get "/sms/incoming" do
   body = params[:Body] || ""
   body = body.downcase.strip
 
-  media = nil
 
-  if body == "who"
-    message = "I'm Daragh's MeBot"
-  elsif body == "what"
-      message = "I'm a bot that'll let you ask things about Daragh without bothering him."
-  elsif body == "why"
-    message = "He made me for this class. To show you how to make simple bots"
-  elsif body = "where"
-    message = "I'm on a server in the cloud.. But Daragh's in Pittsburgh"
-  elsif body = "when"
-    message = "I was made on Sept 14th. But Daragh is much older than that"
-  else
-    message = "I didn't understand that. You can say who, what, where, when and why?"
 
+  if body == "Who are you"
+    message = "I'm Lumix, I could help you order movie ticekts. Tell me what movie do you like?"
+  elsif body == "Dunkirk"
+      message = "Coll! This is Nolan's new movie. It talks about firece battel in World War2. When do you want to see it? "
+  elsif body == "Tommorrow 5 pm"
+    message = "The Manor will have a movie that time, book right now?"
+  elsif body = "OK"
+    message = "Great! I just booked, do you want add it to calender?"
+  elsif body = "Thanks"
+    message = "You are welcome! I'm happy to talk aout this movie after you finishing it!"
   end
 
   twiml = Twilio::TwiML::MessagingResponse.new do |r|
     r.message do |m|
       m.body( message )
-      unless media.nil?
-        m.media( media )
-      end
     end
   end
 
