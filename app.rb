@@ -30,23 +30,25 @@ get "/sms/incoming" do
   body = params[:Body] || ""
   body = body.downcase.strip
 
-
   if session["counter"] == 1
-     message = "Hey! I'm Lumix, I could help you order movie ticekts. "
-  elsif body == "Hi" || body == "Hello" || body == "Hey"
-    message = " Hey! Tell me what movie do you like?"
+    message = "Hey! I'm Lumix, I could help you order movie ticekts."
+
+  elsif body == "Hi"
+    message = "Hey! Tell me what movie do you like?"
   elsif body == "War movie"
     message = "We have Dunkirk and Hacksaw Ridge"
   elsif body == "Dunkirk"
-      message = "Coll! This is Nolan's new movie. It talks about firece battel in World War2. When do you want to see it? "
+    message = "Coll! This is Nolan's new movie. It talks about firece battel in World War2. When do you want to see it?"
   elsif body == "Tommorrow 5 pm"
-    message = "Cool! The Manor will have a movie that time."
+    message = "OK! The Manor will have a movie that time."
   elsif body == "How much is it"
-      message = "8$, book right now?"
+    message = "8$, book right now?"
   elsif body == "OK"
     message = "Great! I just booked, do you want add it to calender?"
   elsif body == "Thanks"
     message = "You are welcome! I'm happy to talk aout this movie after you finishing it!"
+  elsif body == "interests"
+    message = "I love playing volleyball, soccer, being social with friends, and watching movies"
   else
     message = "I'm sorry, I didn't get that"
     media = nil
