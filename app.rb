@@ -33,7 +33,7 @@ get "/sms/incoming" do
 
   if session["counter"] == 1
      message = "Hey! I'm Lumix, I could help you order movie ticekts. "
-  elsif body == "hi" || body == "hello" || body == "hey"
+  elsif body == "Hi" || body == "Hello" || body == "Hey"
     message = " Hey! Tell me what movie do you like?"
   elsif body == "War movie"
     message = "We have Dunkirk and Hacksaw Ridge"
