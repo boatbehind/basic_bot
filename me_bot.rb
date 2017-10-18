@@ -34,7 +34,7 @@ get "/sms/incoming" do
 
   if body == "Who are you"
     message = "I'm Lumimd, I could help you order movie ticekts. Tell me what movie do you like?"
-  elsif body == "The foreigner"
+  elsif body == "the foreigner"
     message = "We have Dunkirk and Hacksaw Ridge"
   elsif body == "Dunkirk"
       message = "Coll! This is Nolan's new movie. It talks about firece battel in World War2. When do you want to see it? "
