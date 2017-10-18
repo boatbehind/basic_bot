@@ -30,7 +30,7 @@ get "/sms/incoming" do
   body = body.downcase.strip
 
   if session["counter"] == 1
-    message = "Hey there, I'm Lumix. I can share any information about any movie!"
+    message = "Hey there, I'm Lumimd. I can share any information about any movie!"
   elsif body == "hello" || body == "hi" || body == "hey"
     message = "Hi! Tell me the movie name you like."
   elsif body[0] == "~"
