@@ -30,27 +30,24 @@ get "/sms/incoming" do
   body = body.downcase.strip
 
   if session["counter"] == 1
-    message = "Hey there, I'm Lumimd. I can share any information about any movie!"
+    message = "Hey there, I'm Lumix. I can share any information about any movie!"
+    #media = "https://media.giphy.com/media/13ZHjidRzoi7n2/giphy.gif"
   elsif body == "hello" || body == "hi" || body == "hey"
-    message = "Hi! Tell me the movie name you like."
-  elsif body[0] == "~"
-    text = body.delete("~")
-    list = Spotlite::Movie.find('text')
-    movie = list.first
-    title = movie.title
-    runtime = movie.runtime
-    genres = movie.genres
-    country = movie.countries
-    directors = movie.directors
-    if body == "runtime"
-      message = directors
-    elsif body == "generes"
-      message = generes
-    elsif body == "country"
-      message = country
-    elsif body == "directors"
-      message = directors
-  end
+    message = "Hi! Tell me the movie name."
+  elsif body == "dunkirk"
+    message = "That's a great movie! Input 'Director', 'Summary', 'Rate', 'Ticket' to know this movie."
+  elsif body == "director"
+    message = "Nolan"
+  elsif body == "summary"
+    message = "War movie"
+  elsif body == "rate"
+    message = "8.7/10.0"
+  elsif body == "ticket"
+    message = "It's available today at asd"
+  elsif body == "career goals"
+    message = "I want to get involved in the product development of electromechanical devices used in everyday situations"
+  elsif body == "interests"
+    message = "I love playing volleyball, soccer, being social with friends, and watching movies"
   else
     message = "I'm sorry, I didn't get that"
     media = nil
