@@ -34,7 +34,7 @@ get "/sms/incoming" do
     #media = "https://media.giphy.com/media/13ZHjidRzoi7n2/giphy.gif"
   elsif body == "hello" || body == "hi" || body == "hey"
     message = "Hi! Tell me the movie name."
-  elsif body == "dunkirk"
+  elsif body == "aa"
     message = "That's a great movie! Input 'Director', 'Summary', 'Rate', 'Ticket' to know this movie."
   elsif body == "director"
     message = "Nolan"
