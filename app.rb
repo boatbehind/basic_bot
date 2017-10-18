@@ -11,6 +11,10 @@ enable :sessions
 
 @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
 
+#moviedb api
+url = 'https://api.themoviedb.org/3/discover/movie?api_key=9ec125b878c86c1f6ce8ca3a234cda31&language=en&sort_by=vote_average.desc&certification_country=US&page=1&with_keywords='
+response = HTTParty.get(url)
+result=response.parsed_response
 
 
 configure :development do
@@ -18,6 +22,7 @@ configure :development do
   Dotenv.load
 end
 
+movie_name = String.new
 
 get "/" do
 	404
@@ -36,23 +41,16 @@ get "/sms/incoming" do
 
   if session["counter"] == 1
     message = "Hey there, I'm Lumimd. I can share any information about any movie!"
-    #media = "https://media.giphy.com/media/13ZHjidRzoi7n2/giphy.gif"
   elsif body == "hello" || body == "hi" || body == "hey"
-    message = "Hi! Tell me the movie name."
-  elsif body == "The foreigner"
-    message = "That's a great movie! Input 'Director', 'Summary', 'Rate', 'Ticket' to know this movie."
-  elsif body == "director"
-    message = "Martin Campbell"
-  elsif body == "summary"
-    message = "A humble businessman with a buried past seeks justice when his daughter is killed in an act of terrorism. A cat-and-mouse conflict ensues with a government official, whose past may hold clues to the killers' identities."
-  elsif body == "rate"
-    message = "7.4/10.0"
-  elsif body == "ticket"
-    message = "Are you in Pittsburgh?"
-  elsif body == "Yes"
-    message = "Here are some movies near Pittsburgh, PA. Let us know if you want to change your location. 1. Hollewood Theater 2. AMC Waterfront"
-  elsif body == "Hollewood Theater"
-    message = "It seems that there are no shows on 10-18-2017, type another date. (MM/DD/YYYY)"
+    message = "Hi! Please tell me the movie name."
+  elsif body != nill
+    keywords = body #findmovie
+    @movie = TmdbMovie.find keywords
+    result2 = url + keywords
+    puts [:release_data][:overview][:vote_average]
+    message = result[:release_data][:overview][:vote_average]
+
+
   else
     message = "I'm sorry, I didn't get that"
     media = nil

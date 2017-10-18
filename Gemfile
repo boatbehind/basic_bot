@@ -10,3 +10,5 @@ gem 'dotenv'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'spotlite'
+gem 'json'
+gem 'ruby-tmdb'
