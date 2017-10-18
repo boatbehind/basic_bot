@@ -33,18 +33,24 @@ get "/sms/incoming" do
     message = "Hey there, I'm Lumix. I can share any information about any movie!"
   elsif body == "hello" || body == "hi" || body == "hey"
     message = "Hi! Tell me the movie name you like."
-  elsif body == "dunkirk"
-    message = "That's a great movie! Which part do you want to know?  Like: 'Director', 'Summary', 'Rate', 'Ticket', 'Show Time'"
-  elsif body == "director"
-    message = "It is directed by Christopher Nolan. My favorite derector!"
-  elsif body == "summary"
-    message = "It talks about Allied soldiers from Belgium, the British Empire and France are surrounded by the German Army, and evacuated during a fierce battle in World War II."
-  elsif body == "rate"
-    message = "8.4/10.0 from IMDb"
-  elsif body == "ticket"
-    message = "It's available at 5 pm at AMC. Do you wanna buy it?"
-  elsif body == "buy"
-    message = "Congratuations! You have bought this ticket!"
+  elsif body[0] == "~"
+    text = body.delete("~")
+    list = Spotlite::Movie.find('text')
+    movie = list.first
+    title = movie.title
+    runtime = movie.runtime
+    genres = movie.genres
+    country = movie.countries
+    directors = movie.directors
+    if body == "runtime"
+      message = directors
+    elsif body == "generes"
+      message = generes
+    elsif body == "country"
+      message = country
+    elsif body == "directors"
+      message = directors
+  end
   else
     message = "I'm sorry, I didn't get that"
     media = nil
