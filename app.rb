@@ -2,6 +2,11 @@ require "sinatra"
 require 'sinatra/reloader' if development?
 require 'twilio-ruby'
 require 'spotlite'
+require 'httparty'
+require 'json'
+require 'rubygems'
+require 'ruby-tmdb'
+
 enable :sessions
 
 @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
