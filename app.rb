@@ -87,7 +87,9 @@ Do you wanna see it?"
 2. Hollywood Theater
 3. AMC Mount Lebanon 6
 4. AMC South Hills Village 10
-5. Cinemark Robinson Township and XD"
+5. Cinemark Robinson Township and XD
+Find More Here
+https://www.fandango.com/15201_movieTimes?ticketedonly=true"
   elsif body == "1"
     message ="What date are you looking for? (MM/DD/YYYY)"
   elsif body == "10/25/2017"
