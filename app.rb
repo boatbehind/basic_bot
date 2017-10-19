@@ -62,7 +62,16 @@ Mel Gibson, Sophie Marceau
 📘Overview:
 Enraged at the slaughter of Murron, his new bride and childhood love, Scottish warrior William Wallace slays a platoon of the local English lord's soldiers. This leads the village to revolt and, eventually, the entire country to rise up against English rule."
 
-  elsif body == "the foreigner"
+  elsif body == "films on showing"
+   message ="
+1. Geostorm
+2. Happy Death Day
+3. The Snow Man
+4. The Foreigner
+5. Only the Brave
+Find More Here
+https://www.fandango.com/moviesintheaters"
+  elsif body == "4"
     message =
 "
 🎫Vote average: 6.3
