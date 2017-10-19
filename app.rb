@@ -13,9 +13,13 @@ enable :sessions
 
 
 #moviedb api
-url = 'https://api.themoviedb.org/3/search/movie?' + ENV["MOVIEDB_API_KEY"] + 'language=en-US&query='
+url = 'https://api.themoviedb.org/3/search/movie?api_key=9ec125b878c86c1f6ce8ca3a234cda31&language=en-US&query=iron%20man'
 response = HTTParty.get(url)
-result=response.parsed_response
+results = response["results"].first
+title = results["title"].first
+vote_average = results["vote_average"].first
+popularity = results["popularity"].first
+overview = results["overview"].first
 
 
 configure :development do
@@ -48,8 +52,7 @@ get "/sms/incoming" do
     query = body
     #findmovie
     #@movie = TmdbMovie.find keywords
-    result2 = url + query
-    message = result2[:roriginal_title][:vote_average][:overview][:popularity]
+    message = title + vote_average + popularity + overview
 
 
   else
