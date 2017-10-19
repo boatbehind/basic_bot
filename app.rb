@@ -69,7 +69,7 @@ Enraged at the slaughter of Murron, his new bride and childhood love, Scottish w
 3. The Snow Man
 4. The Foreigner
 5. Only the Brave
-Find More Here
+Find more movies here:
 https://www.fandango.com/moviesintheaters"
   elsif body == "4"
     message =
