@@ -49,6 +49,19 @@ Tom Hanks, Robin Wright
 
 📘Overview:
 A man with a low IQ has accomplished great things in his life, far exceeding what anyone imagined he could do. Yet, despite all the things he has attained. 'Forrest Gump' is the story of a man who rose above his challenges, and who proved that determination, courage, and love are more important than ability."
+elsif body == "braveheart"
+  message =
+"
+🎫Vote average: 7.7
+
+🕰Release year: 1995
+
+🎬Cast:
+Mel Gibson, Sophie Marceau
+
+📘Overview:
+Enraged at the slaughter of Murron, his new bride and childhood love, Scottish warrior William Wallace slays a platoon of the local English lord's soldiers. This leads the village to revolt and, eventually, the entire country to rise up against English rule."
+
   elsif body == "the foreigner"
     message =
 "
@@ -72,7 +85,9 @@ Do you wanna see it?"
     message = "Here are some theaters near Pittsburgh. Reply the number you want to go.
 1. AMC Waterfront 22
 2. Hollywood Theater
-3. AMC Mount Lebanon 6"
+3. AMC Mount Lebanon 6
+4. AMC South Hills Village 10
+5. Cinemark Robinson Township and XD"
   elsif body == "1"
     message ="What date are you looking for? (MM/DD/YYYY)"
   elsif body == "10/25/2017"
