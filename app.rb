@@ -8,7 +8,6 @@ enable :sessions
 
 
 #moviedb api
-url = 'https://api.themoviedb.org/3/search/movie?api_key=9ec125b878c86c1f6ce8ca3a234cda31&language=en-US&query='
 
 
 
@@ -36,24 +35,22 @@ get "/sms/incoming" do
 
   if session["counter"] == 1
     message = "Hey there, I'm Lumimd. I can share any information about any movie!"
-  elsif body == "hello" || body == "hi" || body == "hey"
-    message = "Hi! Please tell me the movie name."
-  elsif body[0] == "~"
-    #findmovie
-    #@movie = TmdbMovie.find keywords
-    movie_name = body.delete("~")
-    url = url + movie_name
-    response = HTTParty.get(url)
-
-    title = response["results"][0]["title"]
-    vote_average = response["results"][0]["vote_average"]
-    overview = response["results"][0]["overview"]
-    vote_average = response["results"][0]["vote_average"]
-    popularity = response["results"][0]["popularity"]
-    answer = title + vote_average + popularity + overview
-
-    message = answer.to_s
-
+  elsif body == "hello" || body == "hi" || body == "hey"|| body == "cool"
+    message = "Yeah! Tell me the movie name you like."
+  elsif body == "forrest gump"
+    message = "vote average:8.2" + "release year:1994" + "cast:Tom Hanks, Robin Wright" +"overview:A man with a low IQ has accomplished great things in his life and been present during significant historic events - in each case, far exceeding what anyone imagined he could do. Yet, despite all the things he has attained, his one true love eludes him. 'Forrest Gump' is the story of a man who rose above his challenges, and who proved that determination, courage, and love are more important than ability."
+  elsif body == "the foreigner"
+    message = "vote average:6.3" + "release year:2017" + "cast:Jackie Chan, Pierce Brosnan, Charlie Murphy" +"overview:Quan is a humble London businessman whose long-buried past erupts in a revenge-fueled vendetta when the only person left for him to love -- his teenage daughter -- dies in a senseless act of politically motivated terrorism. His relentless search to find the terrorists leads to a cat-and-mouse conflict with a British government official whose own past may hold the clues to the identities of the elusive killers." + "This movie is on! Do you wanna see it?"
+  elsif body == "Yes"
+    message = "where is you location?"
+  elsif body == "akron"
+    message = "Sorry, we didn't find any movies playing there. Let me know if you want to change your location."
+  elsif body == "pittsburgh"
+    message = "Here are some movies near Pittsburgh. Reply the number you want to go. 1. AMC Waterfront 22  2. Hollywood Theater 3. AMC Mount Lebanon 6"
+  elsif body == "1"
+    message ="What date are you looking for? (MM/DD/YYYY)"
+  elsif body == "10/25/2017"
+    message ="Here we get some shows on 10/25/2017 at AMC Waterfront 22. Please check your tickets in this page. https://www.fandango.com/amc-waterfront-22-aaosa/theater-page?date=2017-10-25"
   else
     message = "I'm sorry, I didn't get that"
     media = nil
