@@ -41,11 +41,14 @@ get "/sms/incoming" do
     message =
 "
 🎫Vote average: 8.2
+
 🕰Release year: 1994
+
 🎬Cast:
 Tom Hanks, Robin Wright
+
 📘Overview:
-A man with a low IQ has accomplished great things in his life and been present during significant historic events - in each case, far exceeding what anyone imagined he could do. Yet, despite all the things he has attained, his one true love eludes him. 'Forrest Gump' is the story of a man who rose above his challenges, and who proved that determination, courage, and love are more important than ability."
+A man with a low IQ has accomplished great things in his life, far exceeding what anyone imagined he could do. Yet, despite all the things he has attained. 'Forrest Gump' is the story of a man who rose above his challenges, and who proved that determination, courage, and love are more important than ability."
   elsif body == "the foreigner"
     message =
 "
@@ -59,7 +62,8 @@ Jackie Chan, Pierce Brosnan, Charlie Murphy
 📘Overview:
 Quan is a London businessman whose long-buried past erupts in a vendetta when the only person left for him to love -- his daughter -- dies in a senseless act of terrorism. His relentless search to find the terrorists leads to a conflict with a British official whose own past may hold the clues to the identities of the elusive killers.
 
-This movie is on! Do you wanna see it?🍿🍿🍿"
+This movie is on!🍿🍿🍿
+Do you wanna see it?"
   elsif body == "yes"
     message = "where is you location?"
   elsif body == "akron"
