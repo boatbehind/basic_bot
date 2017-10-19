@@ -10,9 +10,10 @@ require 'ruby-tmdb'
 enable :sessions
 
 @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
+language=en-US&query=iron%20man&page=1
 
 #moviedb api
-url = 'https://api.themoviedb.org/3/discover/movie?api_key=9ec125b878c86c1f6ce8ca3a234cda31&language=en&sort_by=vote_average.desc&certification_country=US&page=1&with_keywords='
+url = 'https://api.themoviedb.org/3/search/movie?' + ENV["MOVIEDB_API_KEY"] + 'anguage=en-US&query='
 response = HTTParty.get(url)
 result=response.parsed_response
 
@@ -44,11 +45,11 @@ get "/sms/incoming" do
   elsif body == "hello" || body == "hi" || body == "hey"
     message = "Hi! Please tell me the movie name."
   elsif body != nill
-    keywords = body #findmovie
-    @movie = TmdbMovie.find keywords
-    result2 = url + keywords
-    puts [:release_data][:overview][:vote_average]
-    message = result[:release_data][:overview][:vote_average]
+    query = body
+    #findmovie
+    #@movie = TmdbMovie.find keywords
+    result2 = url + query
+    message = result2[:roriginal_title][:vote_average][:overview][:popularity]
 
 
   else
