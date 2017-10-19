@@ -13,13 +13,8 @@ enable :sessions
 
 
 #moviedb api
-url = 'https://api.themoviedb.org/3/search/movie?api_key=9ec125b878c86c1f6ce8ca3a234cda31&language=en-US&query=iron%20man'
-response = HTTParty.get(url)
-results = response["results"].first
-title = results["title"].first
-vote_average = results["vote_average"].first
-popularity = results["popularity"].first
-overview = results["overview"].first
+url = 'https://api.themoviedb.org/3/search/movie?api_key=9ec125b878c86c1f6ce8ca3a234cda31&language=en-US&query='
+
 
 
 configure :development do
@@ -27,7 +22,7 @@ configure :development do
   Dotenv.load
 end
 
-movie_name = String.new
+
 
 get "/" do
 	404
@@ -48,12 +43,21 @@ get "/sms/incoming" do
     message = "Hey there, I'm Lumimd. I can share any information about any movie!"
   elsif body == "hello" || body == "hi" || body == "hey"
     message = "Hi! Please tell me the movie name."
-  elsif body != nill
-    query = body
+  elsif body[0] == "~"
     #findmovie
     #@movie = TmdbMovie.find keywords
-    message = title + vote_average + popularity + overview
+    movie_name = body.delete("~")
+    url = url + movie_name
+    response = HTTParty.get(url)
 
+    title = response["results"][0]["title"]
+    vote_average = response["results"][0]["vote_average"]
+    overview = response["results"][0]["overview"]
+    vote_average = response["results"][0]["vote_average"]
+    popularity = response["results"][0]["popularity"]
+    answer = title + vote_average + popularity + overview
+
+    message = answer.to_s
 
   else
     message = "I'm sorry, I didn't get that"
