@@ -10,10 +10,10 @@ require 'ruby-tmdb'
 enable :sessions
 
 @client = Twilio::REST::Client.new ENV["TWILIO_ACCOUNT_SID"], ENV["TWILIO_AUTH_TOKEN"]
-language=en-US&query=iron%20man&page=1
+
 
 #moviedb api
-url = 'https://api.themoviedb.org/3/search/movie?' + ENV["MOVIEDB_API_KEY"] + 'anguage=en-US&query='
+url = 'https://api.themoviedb.org/3/search/movie?' + ENV["MOVIEDB_API_KEY"] + 'language=en-US&query='
 response = HTTParty.get(url)
 result=response.parsed_response
 
